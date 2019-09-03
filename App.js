@@ -7,6 +7,8 @@ import SplashScreen from './src/components/Splash/SplashScreen';
 import StudentDash from './src/components/Dashboard/Student/StudentDash';
 import LocationEntry from './src/components/Dashboard/Student/LocationPicker/LocationEntry';
 import Globals from './src/components/Globals';
+import AutocompleteEntry from './src/components/Dashboard/Student/LocationPicker/AutocompleteEntry';
+import StudentRoute from './src/components/RouteView/Student/StudentRoute';
 
 class HomeScreen extends Component {
   static navigationOptions = {
@@ -49,7 +51,8 @@ class LoginScreen extends React.Component {
 
 class StudentDashboardScreen extends React.Component {
   static navigationOptions = {
-    header: null
+    header: null,
+    gesturesEnabled: false
   }
   render() {
     return (
@@ -67,11 +70,22 @@ class LocationEntryScreen extends React.Component {
   }
   render(){
     return(
-      <LocationEntry/>
+      <LocationEntry navigation = {this.props.navigation}/>
     );
   }
 }
 
+class StudentRouteScreen extends React.Component {
+  static navigationOptions = {
+    header: null, 
+    gesturesEnabled: false
+  }
+  render(){
+    return(
+      <StudentRoute navigation = {this.props.navigation}/>
+    );
+  }
+}
 
 const RootStack = createStackNavigator(
   {
@@ -79,10 +93,11 @@ const RootStack = createStackNavigator(
     Register: RegisterScreen,
     Login: LoginScreen,
     StudentDash: StudentDashboardScreen,
-    LocationEntry:LocationEntryScreen
+    LocationEntry:LocationEntryScreen,
+    StudentRoute: StudentRouteScreen
   },
   {
-    initialRouteName: 'LocationEntry'
+    initialRouteName: 'Splash'
   }
 );
 
